@@ -1,0 +1,47 @@
+from pydub import AudioSegment
+from pydub.playback import play
+
+audio_in_file = "Trumpet16.wav"
+
+#se asigna el tiempo de atraso en la siguiente variable la duracion esta el milisegundos
+tiempo_de_atraso = 300
+
+#se crea un atraso para el audio
+one_sec_segment = AudioSegment.silent(duration=tiempo_de_atraso)  
+one_sec_segment2 = AudioSegment.silent(duration=tiempo_de_atraso*2)
+one_sec_segment3 = AudioSegment.silent(duration=tiempo_de_atraso*3)
+one_sec_segment4 = AudioSegment.silent(duration=tiempo_de_atraso*4)
+one_sec_segment5 = AudioSegment.silent(duration=tiempo_de_atraso*5)
+
+#se lee el archivo de audio en este caso .wav
+song = AudioSegment.from_wav(audio_in_file)
+
+#se agrega el atraso al audio original y se crea un nuevo audio
+final_song  = (one_sec_segment + song)
+final_song2 = (one_sec_segment2+ song) 
+final_song3 = (one_sec_segment3 + song) 
+final_song4 = (one_sec_segment4 + song)
+final_song5 = (one_sec_segment5 + song)
+#bajamos un poco el volumen para crear mejor efecto
+bajoV1 = final_song -5
+bajoV2 = final_song2 -10
+bajoV3 = final_song3 -15
+bajoV4 = final_song4 -20
+bajoV5 = final_song5 -25
+
+#por ultimo cambiando la frecuencia
+
+#convinando el audio original y el audio atrasado para 
+mixed = bajoV1.overlay(song)
+mixed2 = mixed.overlay(bajoV2)
+mixed3 = mixed2.overlay(bajoV3)
+mixed4 = mixed3.overlay(bajoV4)
+mixed5 = mixed4.overlay(bajoV5)
+
+
+#por ultimo reproduciendo el audio convinado
+play(mixed5)
+
+
+#finalmente si se quiere exportamos el audio (descomentar para guardar)
+#mixed4.export("perro.mp3", format='mp3')
