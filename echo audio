@@ -29,7 +29,7 @@ bajoV3 = final_song3 -15
 bajoV4 = final_song4 -20
 bajoV5 = final_song5 -25
 
-#convinando el audio original y el audio atrasado para mejorar el efecto
+#convinando el audio original y el audio atrasado 
 mixed = bajoV1.overlay(song)
 mixed2 = mixed.overlay(bajoV2)
 mixed3 = mixed2.overlay(bajoV3)
